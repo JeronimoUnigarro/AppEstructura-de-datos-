@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Consultation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #e60012;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        button {
+            background-color: #e60012;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #cc0000;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        form {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Add Consultation</h1>
+        <a href="{{ url_for('index') }}"><button>Back to Home</button></a>
+    </header>
+    <main>
+        <div class="container">
+            <h2>Add Consultation</h2>
+            <form action="{{ url_for('add_consultation') }}" method="post">
+                <label for="patient_id">Select Patient:</label>
+                <select id="patient_id" name="patient_id" required>
+                    {% for patient in patients %}
+                        <option value="{{ patient.patient_id }}">{{ patient.name }}</option>
+                    {% endfor %}
+                </select>
+                
+                <label for="date">Consultation Date:</label>
+                <input type="date" id="date" name="date" required>
+                
+                <label for="doctor">Doctor's Name:</label>
+                <input type="text" id="doctor" name="doctor" required>
+                
+                <label for="diagnosis">Diagnosis:</label>
+                <input type="text" id="diagnosis" name="diagnosis" required>
+                
+                <label for="medication">Medication Prescribed:</label>
+                <input type="text" id="medication" name="medication" required>
+                
+                <button type="submit">Add Consultation</button>
+            </form>
+            <a href="{{ url_for('undo_last_action') }}"><button>Undo Last Action</button></a>
+        </div>
+    </main>
+</body>
+</html>

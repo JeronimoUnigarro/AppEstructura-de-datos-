@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #e60012;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        button {
+            background-color: #e60012;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #cc0000;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Consultation History for {{ patient.name }}</h1>
+        <a href="{{ url_for('index') }}"><button>Back to Home</button></a>
+    </header>
+    <main>
+        <div class="container">
+            <h2>Consultation History</h2>
+            <ul>
+                {% for consultation in patient.history %}
+                    <li>{{ consultation.date }} - {{ consultation.doctor }} - {{ consultation.diagnosis }} - {{ consultation.medication }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </main>
+</body>
+</html>
